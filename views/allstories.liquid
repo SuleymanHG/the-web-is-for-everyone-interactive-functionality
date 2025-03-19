@@ -1,0 +1,51 @@
+{% render 'partials/head.liquid', title: 'All stories' %}
+<main class="all-stories-pagina">
+
+<nav class="all-stories-pagina-nav">
+    <div>
+        <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3398 0.555032C14.0797 1.29497 14.0797 2.49465 13.3398 3.23459L4.5743 12.0001L13.3398 20.7656C14.0797 21.5055 14.0797 22.7052 13.3398 23.4451C12.5998 24.1851 11.4002 24.1851 10.6602 23.4451L0.554955 13.3399C-0.184985 12.5999 -0.184985 11.4002 0.554955 10.6603L10.6602 0.555032C11.4002 -0.184909 12.5998 -0.184909 13.3398 0.555032Z" fill="white"/>
+        </svg>
+    </div>
+    <div>
+        <h1>All stories</h1>
+    </div>
+</nav>
+
+<section class="all-stories">
+    <h2>All stories</h2>
+    <div>
+        <div>
+            <button>Dutch</button>
+            <button>English</button>
+        </div>
+        <div>
+            <a href="/stories">Show all</a>
+        </div>
+    </div>
+
+    <div class="all-stories-slider">
+        {% for playlist in playlists %}
+            <ul class="all-stories-items">
+                <li>
+                    <div>
+                        <img src="https://fdnd-agency.directus.app/assets/{{ playlist.image }}?width=112&height=95">
+                    </div>
+
+                    <div class="storie-content">
+                        <h3>{{ playlist.title }}</h2>
+                        <p>Long ago there was a family of dinosaurs that lived in a deserted place. The little dinosaur is making a new friend.</p>
+                        <button>
+                            <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.0874 7.06141C10.7817 6.52417 10.7817 5.47595 10.0874 4.93871C7.98914 3.31514 5.6461 2.03543 3.14602 1.14749L2.68929 0.985277C1.8155 0.674939 0.892544 1.26613 0.774251 2.16812C0.443739 4.68826 0.443739 7.31186 0.774251 9.83201C0.892543 10.734 1.8155 11.3252 2.68929 11.0148L3.14602 10.8526C5.6461 9.96469 7.98914 8.68498 10.0874 7.06141Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
+    </section>
+
+</main>
+{% render 'partials/footer.liquid'%}
