@@ -39,10 +39,14 @@ app.get('/', async function (request, response) {
   const playlistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_playlist')
   const playlistResponseJSON = await playlistResponse.json()  
 
+  const storiesResponse = await fetch('https://fdnd-agency.directus.app/items/tm_story')
+  const storiesResponseJSON = await storiesResponse.json()  
+
  // Geef hier eventueel data aan mee
  response.render('index.liquid', {
   title: 'Lessons',
-  playlists: playlistResponseJSON.data
+  playlists: playlistResponseJSON.data,
+  stories: storiesResponseJSON.data
  })
 })
 
