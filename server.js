@@ -57,7 +57,7 @@ app.get('/stories', async function (request, response) {
  // Geef hier eventueel data aan mee
  response.render('allstories.liquid', {
   title: 'All stories',
-  allstorie: storiesResponseJSON.data,  
+  stories: storiesResponseJSON.data,  
   playlists: playlistResponseJSON.data
  })
 })
