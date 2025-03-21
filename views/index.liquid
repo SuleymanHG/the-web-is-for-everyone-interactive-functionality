@@ -12,20 +12,32 @@
     </section>
 
     <section class="all-stories">
-
         <h2>All stories</h2>
-        <div>
-            <div>
+        <div class="talen">
+            
                 <button>Dutch</button>
                 <button>English</button>
-            </div>
+           
             <div>
                 <a href="/stories">Show all</a>
             </div>
         </div>
-
         {% render 'partials/stories.liquid', stories: stories %}
     </section>
+
+
+    <section id="liked-playlists">
+        <h2>Liked playlists</h2>
+        <div class="liked-playlists-container">
+          <!-- Gelikete playlists komen hier -->
+        </div>
+      </section>
+      
+      <!-- Suggested playlists sectie -->
+      <section class="eigen-playlists">
+        <h2>Suggested playlists</h2>
+        {% render 'partials/playlists.liquid', playlists : playlists %}
+      </section>
 
 </main>
 {% render 'partials/footer.liquid'%}
