@@ -66,6 +66,35 @@ app.get('/stories', async function (request, response) {
  })
 })
 
+
+
+
+
+
+
+app.post('/stories', async (req, res) => {
+  const { id } = req.body;
+  try {
+    const response = await fetch(`https://fdnd-agency.directus.app/items/tm_story/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_DIRECTUS_API_TOKEN'
+      },
+      body: JSON.stringify({ liked: true })
+    });
+    const result = await response.json();
+
+    if(response.ok) {
+      res.status(200).json({ liked: result.data.liked });
+    } else {
+      res.status(response.status).json(result);
+    }
+  } catch (error) {
+    console.error("Error updating playlist:", error);
+    res.status(500).json({ error: 'Er is een fout opgetreden bij het liken van de playlist.' });
+  }
+});
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 // Hier doen we nu nog niets mee, maar je kunt er mee spelen als je wilt
 app.post('/', async function (request, response) {
