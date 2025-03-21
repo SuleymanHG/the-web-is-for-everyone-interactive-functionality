@@ -212,3 +212,110 @@ section {
     }
 }
 
+.all-stories {
+
+    .talen{
+        display: flex;
+        margin: 15px 0 ;
+
+        button{
+            background-color: var(--button-color-eight);
+            border: none;
+            width: 80px;
+            height: 28px;
+            font-weight: var(--font-weight-semi-bold);
+            border-radius: 8px;
+            margin-right: 15px;
+
+            &:hover{
+                background-color: var(--hover-button-color-eight);
+            }
+        }
+
+    }
+
+    .all-stories-slider {
+
+        .all-stories-items {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            background-color: var(--main-achtergrond-list-items);
+            max-width: 358px;
+            height: 83px;
+            padding: 0;
+            
+            border-radius: 8px;
+
+                li{
+                    display: grid;
+                    grid-template-columns: repeat(2, auto);
+                    grid-template-rows: repeat(3, auto);
+                    grid-column-gap: 0px;
+                    grid-row-gap: 0px;
+
+                    img{
+                        height: 67px;
+                        width: 60px;
+                        grid-area: 1 / 1 / 4 / 2; 
+                        object-fit: cover;
+                        border-radius: 4px;
+                        margin-left: 7px;
+                    }
+
+                    h3{
+                        margin: 0;
+                        text-align: left;
+                        grid-area: 1 / 2 / 2 / 3;
+                    }
+
+                    p{
+                        margin:0;
+                        text-align: left;
+                        grid-area: 2 / 2 / 3 / 3;   
+                    }
+
+                    button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: var(--button-color-seven);
+                        border: none;
+                        border-radius: 50%;
+                        width: 18px;
+                        height: 18px;
+                        grid-area: 3 / 2 / 4 / 3; 
+    
+                        &:hover {
+                            background-color: var(--hover-button-color-seven);
+                        }
+
+                        svg{
+                            width: 9px;
+                            height: 9px;
+                        }
+                    }
+                }
+        }
+    }
+}
+
+    .all-stories-pagina-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5em;
+
+        div:first-of-type {
+            display: flex;
+            align-items: start;
+        }
+
+        div:nth-child(2) {
+            display: flex;
+            align-items: center;
+        }
+
+    }
+
+
