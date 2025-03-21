@@ -143,3 +143,72 @@ section {
     margin-bottom: 50px;
 }
 
+.methode-knop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style-type: none;
+
+        button {
+            width: 290px;
+            height: 37px;
+            border-radius: 8px;
+            border-style: none;
+            background-color: var(--methode-color-one);
+            color: var(--font-main-kleur);
+            font-weight: var(--font-weight-medium);
+
+        }
+    }
+}
+
+
+.eigen-playlists {
+    margin: 0px 0 50px 0px;
+
+
+    .eigen-playlist-slider {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        overflow: auto;
+
+    }
+
+    .playlist-items {
+        list-style-type: none;
+        background-color: var(--main-achtergrond-list-items);
+        width: 136px;
+        height: 189px;
+        padding-left: 0;
+        padding: 15px;
+        border-radius: 8px;
+
+        img {
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: var(--button-color-six);
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+
+            &:hover {
+                background-color: var(--hover-button-color-six);
+            }
+        }
+
+
+    }
+}
+
