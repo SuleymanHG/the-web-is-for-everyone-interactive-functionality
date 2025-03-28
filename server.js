@@ -66,6 +66,15 @@ app.get('/', async function (request, response) {
   const profilelistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_profile');
   const profilelistResponseJSON = await profilelistResponse.json();
 
+
+  const userProfileId = request.session.user.profile.id;
+  const likesResponse = await fetch(`https://fdnd-agency.directus.app/items/tm_likes?filter[profile][_eq]=${userProfileId}`);
+  const likesResponseJSON = await likesResponse.json();
+
+  const likedPlaylists = playlistResponseJSON.data.filter(playlist =>
+    likesResponseJSON.data.some(like => like.playlist_id === playlist.id)
+  );
+
   // Geef hier eventueel data aan mee
   response.render('index.liquid', {
     title: 'Lessons',
@@ -98,7 +107,7 @@ app.post('/like', async function (request, response) {
     body: JSON.stringify({
       post_id: post_id,
       user_id: user_id,
-      profile_id: profile_id
+      profile_id: profile_id  
     })
   });
 
