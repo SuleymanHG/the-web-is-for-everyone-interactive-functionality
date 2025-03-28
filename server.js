@@ -2,7 +2,7 @@
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
 import express from 'express'
 
-// import session from 'express-session'
+import session from 'express-session'
 
 // Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
 import { Liquid } from 'liquidjs';
@@ -24,13 +24,13 @@ import { Liquid } from 'liquidjs';
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// app.use((request, response, next) => {
-//   request.session = { user: { id: 13, username: 'Süleyman', profile: { id: 123, username: 'Yavuzhan' } } };
-//   next();
-// });
+app.use((request, response, next) => {
+  request.session = { user: { id: 13, username: 'Süleyman', profile: { id: 123, username: 'Yavuzhan' } } };
+  next();
+});
 
 // Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
 // Bestanden in deze map kunnen dus door de browser gebruikt worden
@@ -44,12 +44,12 @@ app.engine('liquid', engine.express());
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
-// const sessionSecret = process.env.SESSION_SECRET || 'shg1234'
-// app.use(session({
-//   secret: sessionSecret,
-//   resave: false,
-//   saveUninitialized: true
-// }))
+const sessionSecret = process.env.SESSION_SECRET || 'shg1234'
+app.use(session({
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: true
+}))
 
 // Maak een GET route voor de index (meestal doe je dit in de root, als /)
 app.get('/', async function (request, response) {
