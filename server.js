@@ -2,11 +2,13 @@
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
 import express from 'express'
 
+import session from 'express-session'
+
 // Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
 import { Liquid } from 'liquidjs';
 
 
-console.log('Hieronder moet je waarschijnlijk nog wat veranderen')
+
 // Doe een fetch naar de data die je nodig hebt
 // const apiResponse = await fetch('...')
 
@@ -18,8 +20,17 @@ console.log('Hieronder moet je waarschijnlijk nog wat veranderen')
 // console.log(apiResponseJSON)
 
 
+
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use((request, response, next) => {
+  request.session = { user: { id: 13, username: 'Süleyman', profile: { id: 123, username: 'Yavuzhan' } } };
+  next();
+});
 
 // Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
 // Bestanden in deze map kunnen dus door de browser gebruikt worden
@@ -33,22 +44,68 @@ app.engine('liquid', engine.express());
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
+const sessionSecret = process.env.SESSION_SECRET || 'shg1234'
+app.use(session({
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: true
+}))
+
 // Maak een GET route voor de index (meestal doe je dit in de root, als /)
 app.get('/', async function (request, response) {
   
-  const playlistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_playlist')
-  const playlistResponseJSON = await playlistResponse.json()  
+  const playlistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_playlist');
+  const playlistResponseJSON = await playlistResponse.json();  
 
-  const storiesResponse = await fetch('https://fdnd-agency.directus.app/items/tm_story')
-  const storiesResponseJSON = await storiesResponse.json()  
+  const storiesResponse = await fetch('https://fdnd-agency.directus.app/items/tm_story');
+  const storiesResponseJSON = await storiesResponse.json();  
+  
+  const userlistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_users');
+  const userlistResponseJSON = await userlistResponse.json();
 
- // Geef hier eventueel data aan mee
- response.render('index.liquid', {
-  title: 'Lessons',
-  playlists: playlistResponseJSON.data,
-  stories: storiesResponseJSON.data
- })
-})
+  const profilelistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_profile');
+  const profilelistResponseJSON = await profilelistResponse.json();
+
+  // Geef hier eventueel data aan mee
+  response.render('index.liquid', {
+    title: 'Lessons',
+    playlists: playlistResponseJSON.data,
+    stories: storiesResponseJSON.data,
+    userlist: userlistResponseJSON.data,
+    profilelist: profilelistResponseJSON.data,
+    likedPlaylists: likedPlaylists, 
+    user: request.session.user
+  });
+});
+
+
+app.get('/likes', async function (request, response) {
+  const directusResponse = await fetch('https://fdnd-agency.directus.app/items/tm_likes', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  });
+  const data = await directusResponse.json();
+  
+  response.json(data);
+});
+
+app.post('/like', async function (request, response) {
+  const { post_id, user_id, profile_id } = request.body;
+
+  await fetch('https://fdnd-agency.directus.app/items/tm_likes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      post_id: post_id,
+      user_id: user_id,
+      profile_id: profile_id
+    })
+  });
+
+  response.redirect(303, '/')
+});
+
+
 
 app.get('/stories', async function (request, response) {
   // Render index.liquid uit de Views map
@@ -67,34 +124,6 @@ app.get('/stories', async function (request, response) {
 })
 
 
-
-
-
-
-
-app.post('/stories', async (req, res) => {
-  const { id } = req.body;
-  try {
-    const response = await fetch(`https://fdnd-agency.directus.app/items/tm_story/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer YOUR_DIRECTUS_API_TOKEN'
-      },
-      body: JSON.stringify({ liked: true })
-    });
-    const result = await response.json();
-
-    if(response.ok) {
-      res.status(200).json({ liked: result.data.liked });
-    } else {
-      res.status(response.status).json(result);
-    }
-  } catch (error) {
-    console.error("Error updating playlist:", error);
-    res.status(500).json({ error: 'Er is een fout opgetreden bij het liken van de playlist.' });
-  }
-});
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 // Hier doen we nu nog niets mee, maar je kunt er mee spelen als je wilt
 app.post('/', async function (request, response) {
@@ -102,6 +131,34 @@ app.post('/', async function (request, response) {
   // Er is nog geen afhandeling van een POST, dus stuur de bezoeker terug naar /
   response.redirect(303, '/')
 })
+
+app.get('/lessons', async function (request, response) {
+  const lessonsplaylistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_playlists')
+  const lessonsplaylistResponseJSON = await lessonsplaylistResponse.json()
+
+  response.render('partials/playlists.liquid', {
+    title: "lessons",
+    drops: lessonsplaylistResponseJSON.data,
+  })
+})
+
+app.post('/lessons', async function (request, response) {
+
+  await fetch('https://fdnd-agency.directus.app/items/tm_likes', {
+    method: 'POST',
+    body: JSON.stringify({
+      from: request.body.from,
+      text: request.body.text
+    }),
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
+
+  response.redirect(303, '/lessons');
+})
+
+
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000, als dit ergens gehost wordt, is het waarschijnlijk poort 80
