@@ -76,6 +76,7 @@
     --font-size-h3: 0.75rem;
     --font-size-story-title: 0.75rem;
     --font-size-story-description: 0.5rem;
+    --font-size-playlist-duration:0.45rem;
     --font-size-method: 0.75rem;
 
     /* Font-weights */
@@ -97,9 +98,14 @@
     --line-height-story-description: 0.75rem;
 }
 
+*{
+    box-sizing: border-box; 
+    
+}
+
 body {
     font-family: var(--font-text), Arial, Helvetica, sans-serif;
-    background: linear-gradient(0deg, rgba(20, 33, 81, 1) 0%, rgba(71, 24, 113, 1) 35%);
+    background: linear-gradient(0deg, rgba(20, 33, 81, 1) 0%, rgba(71, 24, 113, 1) 100%);
     background-repeat: no-repeat;
     background-size: cover;
     color: black;
@@ -174,16 +180,23 @@ section {
 .eigen-playlists {
     margin: 0px 0 50px 0px;
 
+    h2{
+        margin-bottom: 10px;
+    }
+
 
     .eigen-playlist-slider {
         display: flex;
         flex-direction: row;
         gap: 30px;
         overflow: auto;
+        overflow-y: hidden;
 
     }
 
     .playlist-items {
+        display: flex;
+        justify-content: center;
         list-style-type: none;
         background-color: var(--main-achtergrond-list-items);
         width: 136px;
@@ -192,11 +205,25 @@ section {
         padding: 15px;
         border-radius: 8px;
 
+        h3{
+            font-size: var(--font-size-h3);
+            margin: 0 ;
+            text-align: left;
+        }
+
         img {
             border-radius: 4px;
         }
 
-        button {
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            border: none;
+            
+        }
+        .play-btn {
             background-color: var(--button-color-six);
             border: none;
             border-radius: 50%;
@@ -208,15 +235,58 @@ section {
             }
         }
 
+        .items-btn{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            
+           
+           form svg{
+                width: 24px;
+                height: 24px;
+                align-self: center;
+            }
+
+           
+
+            p{
+                font-size: var(--font-size-playlist-duration);
+            }
+        }
+
+        li{
+            display: flex;
+            flex-direction: column;
+        }
 
     }
 }
 
 .all-stories {
+    .lang-btn{
+        display: flex;
+        gap: 2px;
+        align-items: center;
+    }
+
+    a{
+        display: block;
+        text-align: right;
+        color: var(--font-main-kleur);
+        font-weight: var(--font-weight-semi-bold);
+        text-decoration: none;
+        
+    }
 
     .talen{
         display: flex;
+        justify-content: space-between;
         margin: 15px 0 ;
+
+        div{
+            display: flex;
+        }
 
         button{
             background-color: var(--button-color-eight);
