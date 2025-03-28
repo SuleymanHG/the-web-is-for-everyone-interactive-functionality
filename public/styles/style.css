@@ -305,15 +305,25 @@ section {
     }
 
     .all-stories-slider {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;      
 
+        
+        .slider-grid{
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(3, auto);
+            gap: 10px;
+        }
         .all-stories-items {
             display: flex;
             align-items: center;
             list-style-type: none;
             background-color: var(--main-achtergrond-list-items);
-            max-width: 358px;
+            width: 358px;
             height: 83px;
             padding: 0;
+            margin: 0;
             
             border-radius: 8px;
 
@@ -321,7 +331,7 @@ section {
                     display: grid;
                     grid-template-columns: repeat(2, auto);
                     grid-template-rows: repeat(3, auto);
-                    grid-column-gap: 0px;
+                    grid-column-gap: 10px;
                     grid-row-gap: 0px;
 
                     img{
