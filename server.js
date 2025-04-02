@@ -38,7 +38,7 @@ app.use(express.static('public'))
 
 // Stel Liquid in als 'view engine'
 const engine = new Liquid();
-app.engine('liquid', engine.express()); 
+app.engine('liquid', engine.express());
 
 // Stel de map met Liquid templates in
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
@@ -53,28 +53,33 @@ app.use(session({
 
 // Maak een GET route voor de index (meestal doe je dit in de root, als /)
 app.get('/', async function (request, response) {
-  
+
   const playlistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_playlist');
-  const playlistResponseJSON = await playlistResponse.json();  
+  const playlistResponseJSON = await playlistResponse.json();
 
   const storiesResponse = await fetch('https://fdnd-agency.directus.app/items/tm_story');
-  const storiesResponseJSON = await storiesResponse.json();  
-  
+  const storiesResponseJSON = await storiesResponse.json();
+
   const userlistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_users');
   const userlistResponseJSON = await userlistResponse.json();
 
   const profilelistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_profile');
   const profilelistResponseJSON = await profilelistResponse.json();
 
+  const playlistlikesResponse = await fetch('https://fdnd-agency.directus.app/items/tm_profile')
+  const playlistlikesResponseJSON = await playlistlikesResponse.json()
+
 
   const userProfileId = request.session.user.profile.id;
-  const likesResponse = await fetch(`https://fdnd-agency.directus.app/items/tm_likes?filter[profile][_eq]=${userProfileId}`);
+  const likesResponse = await fetch(`https://fdnd-agency.directus.app/items/tm_likes?filter[profile][_eq]=${userProfileId}&fields=profile,playlist,id,playlist.image, playlist.title, playlist.id`);
   const likesResponseJSON = await likesResponse.json();
+  console.log(likesResponseJSON)
 
   const likedPlaylists = playlistResponseJSON.data.filter(playlist =>
     likesResponseJSON.data.some(like => like.playlist_id === playlist.id)
   );
 
+  console.log(request.session.user)
   // Geef hier eventueel data aan mee
   response.render('index.liquid', {
     title: 'Lessons',
@@ -82,7 +87,8 @@ app.get('/', async function (request, response) {
     stories: storiesResponseJSON.data,
     userlist: userlistResponseJSON.data,
     profilelist: profilelistResponseJSON.data,
-    likedPlaylists: likedPlaylists, 
+    likedPlaylists: likedPlaylists,
+    likes: likesResponseJSON.data,
     user: request.session.user
   });
 });
@@ -94,20 +100,20 @@ app.get('/likes', async function (request, response) {
     headers: { 'Content-Type': 'application/json' }
   });
   const data = await directusResponse.json();
-  
+
   response.json(data);
 });
 
 app.post('/like', async function (request, response) {
-  const { post_id, user_id, profile_id } = request.body;
+
+  console.log(request.body, 'Suleyman is gek')
 
   await fetch('https://fdnd-agency.directus.app/items/tm_likes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      post_id: post_id,
-      user_id: user_id,
-      profile_id: profile_id  
+      profile: request.body.profile,
+      playlist: request.body.playlist
     })
   });
 
@@ -115,21 +121,51 @@ app.post('/like', async function (request, response) {
 });
 
 
+app.delete('/like', async function (request, response) {
+  const profileId = request.session.user.profile.id;
+  const playlistId = request.body.playlist;
+
+  try {
+    // Find the like entry that matches this profile and playlist
+    const findResponse = await fetch(`https://fdnd-agency.directus.app/items/tm_likes?filter[profile][_eq]=${profileId}&filter[playlist][_eq]=${playlistId}`);
+    const findJSON = await findResponse.json();
+    const likeToDelete = findJSON.data[0];
+
+    if (!likeToDelete) {
+      return response.status(404).json({ message: 'Like not found' });
+    }
+
+    // Delete it by ID
+    await fetch(`https://fdnd-agency.directus.app/items/tm_likes/${likeToDelete.id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    response.status(200).json({ message: 'Like deleted' });
+
+  } catch (error) {
+    console.error('Delete error:', error);
+    response.status(500).json({ message: 'Something went wrong' });
+  }
+});
+
+
+
 
 app.get('/stories', async function (request, response) {
   // Render index.liquid uit de Views map
   const storiesResponse = await fetch('https://fdnd-agency.directus.app/items/tm_story')
-  const storiesResponseJSON = await storiesResponse.json()  
+  const storiesResponseJSON = await storiesResponse.json()
 
   const playlistResponse = await fetch('https://fdnd-agency.directus.app/items/tm_playlist')
-  const playlistResponseJSON = await playlistResponse.json()  
+  const playlistResponseJSON = await playlistResponse.json()
 
- // Geef hier eventueel data aan mee
- response.render('allstories.liquid', {
-  title: 'All stories',
-  stories: storiesResponseJSON.data,  
-  playlists: playlistResponseJSON.data
- })
+  // Geef hier eventueel data aan mee
+  response.render('allstories.liquid', {
+    title: 'All stories',
+    stories: storiesResponseJSON.data,
+    playlists: playlistResponseJSON.data
+  })
 })
 
 

@@ -62,17 +62,28 @@
     </section>
 
 
-    <section id="liked-playlists">
+    <section class="eigen-playlists">
         <h2>Liked playlists</h2>
-        <div class="liked-playlists-container">
-          <!-- Gelikete playlists komen hier -->
+
+          {% if likes.size > 0 %}
+            {% render 'partials/likedplaylist.liquid', likes: likes %}
+          {% else %}
+            <p>Er zijn momentee geen playlists beschikbaar</p>
+          {% endif %}
+          
         </div>
-      </section>
+      </section>    
       
       <!-- Suggested playlists sectie -->
       <section class="eigen-playlists">
         <h2>Suggested playlists</h2>
-        {% render 'partials/playlists.liquid', playlists : playlists %}
+
+        {% if playlists.size > 0 %}
+            {% render 'partials/playlists.liquid', playlists: playlists %}
+        {% else %}
+            <p>Kijk naar welke playlists je leuk vindt!</p>
+        {% endif %}
+        
       </section>
 
 </main>
