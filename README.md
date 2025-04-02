@@ -1,4 +1,4 @@
-# Tumi Mundo - Like Button Functionaliteit
+# Tumi Mundo - Like Button
 
 ## Projectdoel
 In dit project heb ik een interactieve like-button toegevoegd aan de playlists. Deze functie maakt het mogelijk voor gebruikers om playlists te liken.
@@ -18,8 +18,8 @@ Noem hier de gebruikte technologieën:
 ## Kenmerken
 
 ### HTML & Liquid Templates
-- Leg uit hoe je Liquid hebt gebruikt voor dynamische onderdelen.
-- Voeg eventueel een [permalink naar je HTML/Liquid code](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/views/partials/like-button.liquid) toe.
+Ik heb de onderdelen die ik nodig heb verdeeld in partials, zodat ik die apart kan inladen als ik die nodig heb in mijn pagina.
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/ba4490e831b7ae2b9d47151a6d57c6587e3e3485/views/partials/likedplaylist.liquid
 
 ### CSS
 - Beschrijf hoe je de styling hebt aangepakt.
