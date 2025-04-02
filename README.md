@@ -19,7 +19,8 @@ Noem hier de gebruikte technologieën:
 
 ### HTML & Liquid Templates
 Ik heb de onderdelen die ik nodig heb verdeeld in partials, zodat ik die apart kan inladen als ik die nodig heb in mijn pagina.
-https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/ba4490e831b7ae2b9d47151a6d57c6587e3e3485/views/partials/likedplaylist.liquid
+ 
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/ba4490e831b7ae2b9d47151a6d57c6587e3e3485/views/partials/likedplaylist.liquid#L1C1-L87C10
 
 ### CSS
 - Beschrijf hoe je de styling hebt aangepakt.
