@@ -179,6 +179,10 @@ section {
 
 .eigen-playlists {
     margin: 0px 0 50px 0px;
+    p{
+        font-size: var(--font-size-story-title);
+        color: var(--font-main-kleur);
+    }
 
     h2{
         margin-bottom: 10px;

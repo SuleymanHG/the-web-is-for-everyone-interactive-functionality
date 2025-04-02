@@ -65,11 +65,11 @@
     <section class="eigen-playlists">
         <h2>Liked playlists</h2>
 
-          {% if likes.size > 0 %}
-            {% render 'partials/likedplaylist.liquid', likes: likes %}
-          {% else %}
-            <p>Er zijn momentee geen playlists beschikbaar</p>
-          {% endif %}
+            {% if likes.size > 0 %}
+                {% render 'partials/likedplaylist.liquid', likes: likes %}
+            {% else %}
+                <p>Er zijn momenteel geen playlists beschikbaar</p>
+            {% endif %}
           
         </div>
       </section>    
@@ -78,11 +78,11 @@
       <section class="eigen-playlists">
         <h2>Suggested playlists</h2>
 
-        {% if playlists.size > 0 %}
-            {% render 'partials/playlists.liquid', playlists: playlists %}
-        {% else %}
-            <p>Kijk naar welke playlists je leuk vindt!</p>
-        {% endif %}
+            {% if playlists.size > 0 %}
+                {% render 'partials/playlists.liquid', playlists: playlists %}
+            {% else %}
+                <p>Kijk naar welke playlists je leuk vindt!</p>
+            {% endif %}
         
       </section>
 
