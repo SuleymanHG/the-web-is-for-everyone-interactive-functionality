@@ -48,7 +48,4 @@ https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/
 https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L107-L121
 
 
-## Installatie
-1. Clone de repository:
-   ```bash
-   git clone https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality.git
+# [Website link](https://the-web-is-for-everyone-interactive-vlrt.onrender.com/)
