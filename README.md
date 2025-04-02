@@ -30,6 +30,9 @@ https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/
 #### Partials voor liked playlists
 https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/35f54988cd2e6917713a7b39c48a7cc3678d5761/views/partials/likedplaylist.liquid#L1-L33
 
+### Style guide 
+![A4 - 14](https://github.com/user-attachments/assets/16bc116d-bee5-4177-84cc-2ff0a9db43f8)
+
 ### CSS
 Ik heb in mijn css gebruik gemaakt van custom proerties om de huisstijl van Tumi Mundo te behouden.
 https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4bb42a34a2f3d2b7d0de49eb3beaf2d20db11d6a/public/styles/style.css#L3-L99
