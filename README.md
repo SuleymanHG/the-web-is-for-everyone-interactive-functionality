@@ -38,9 +38,15 @@ Verder heb ik gebruik gemaakt van nesting in de css, zodat de code makkelijker l
 https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4bb42a34a2f3d2b7d0de49eb3beaf2d20db11d6a/public/styles/style.css#L180-L267
 
 ### JavaScript
-- Leg uit hoe de like-knop werkt (bijvoorbeeld via een event listener en fetch request).
-- Noem of je gebruik hebt gemaakt van async/await.
-- Voeg een [permalink naar je JS-bestand](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/public/scripts/like-button.js) toe.
+
+#### De GET
+Om de data kunnen ophalen van de directus data base heb ik get request uitgevierd in mijn [server.js](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/server.js)
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L54-L94
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L97-L105
+
+#### De POST
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4b341bbe56527ed4b8a015aa6d524832c81b05ca/server.js#L107-L121
+
 
 ## Installatie
 1. Clone de repository:
