@@ -1,11 +1,12 @@
 <div class="eigen-playlist-slider">
-    {% for playlist in playlists %}
+    {% for like in likes %}
         <ul class="playlist-items">
             <li>
+                
                 {% comment %} <img src="https://fdnd-agency.directus.app/assets/{{ playlist.image | default: 'assets/img/default-foto.jpg' }}?width=112&height=95">             {% endcomment %}
 
-                <img src="assets/img/default-foto.jpg">
-                <h3>{{ playlist.title }}</h2>
+                <img src="assets/img/default-foto.jpg">                
+                <h3>{{ like.title }}</h2>
 
                 <div class="items-btn">
                     <button class="play-btn">
@@ -15,11 +16,11 @@
                     </button>
                     <p>31 min. 55 sec</p>
                    
-                    <form action="/like" method="POST" data-enhanced="form-{{ id }}">
-                        <input type="hidden" name="playlist" value="{{ playlist.id }}">
-                        <input type="hidden" name="profile" value="123">
+                    <form action="/like" method="POST"data-enhanced="form-{{ id }}">
+                        <input type="hidden" name="playlist" value="{{ like.id }}">
+                        <input type="hidden" name="profile" value="123">    
                         <button type="submit">
-                            <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="liked-svg">
                                 <path d="M8.65358 2.15238C8.8471 2.33832 9.1529 2.33832 9.34642 2.15238C10.1829 1.34871 11.326 0.75 12.6 0.75C15.1489 0.75 17.25 2.64769 17.25 5.0298C17.25 6.72608 16.4577 8.18092 15.348 9.42804C14.2397 10.6736 12.7972 11.7316 11.4588 12.6376L9.14014 14.207C9.0555 14.2643 8.9445 14.2643 8.85986 14.207L6.54125 12.6376C5.20278 11.7316 3.76035 10.6736 2.65201 9.42804C1.54225 8.18092 0.75 6.72608 0.75 5.0298C0.75 2.64769 2.85106 0.75 5.4 0.75C6.67403 0.75 7.81714 1.34871 8.65358 2.15238Z" stroke="#C4C4C4" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
