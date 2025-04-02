@@ -1,36 +1,37 @@
-# Interactive Functionality
+# Tumi Mundo - Like Button Functionaliteit
 
-Ontwerp en maak voor een opdrachtgever een interactieve toepassing die voor iedereen toegankelijk is
+## Projectdoel
+In dit project heb ik een interactieve like-button toegevoegd aan de playlists. Deze functie maakt het mogelijk voor gebruikers om playlists te liken.
 
-De instructie vind je in: [INSTRUCTIONS.md](https://github.com/fdnd-task/the-web-is-for-everyone-interactive-functionality/blob/main/docs/INSTRUCTIONS.md)
+## Oplevering
+Geef hier aan wat je concreet hebt gemaakt tijdens de sprint:
+- Een werkende like-knop toegevoegd aan playlists.
+- Bij het klikken op de knop komt de gelikte playlist in de liked section.
+- De knop is visueel herkenbaar en geeft feedback als het geliked is.
 
-
-## Inhoudsopgave
-
-  * [Beschrijving](#beschrijving)
-  * [Gebruik](#gebruik)
-  * [Kenmerken](#kenmerken)
-  * [Installatie](#installatie)
-  * [Bronnen](#bronnen)
-  * [Licentie](#licentie)
-
-## Beschrijving
-<!-- Bij Beschrijving staat kort beschreven wat voor project het is en wat je hebt gemaakt -->
-<!-- Voeg een mooie poster visual of video toe 📸 -->
-<!-- Voeg een link toe naar GitHub Pages 🌐-->
-
-## Gebruik
-<!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
+## Technologieën
+Noem hier de gebruikte technologieën:
+- **Express.js & Node.js** – voor de backend en routing
+- **Liquid** – voor het genereren van dynamische HTML
+- **HTML, CSS & JavaScript** – voor de opbouw, styling en interactie aan de frontend
 
 ## Kenmerken
-<!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framework of library gebruikt? -->
+
+### HTML & Liquid Templates
+- Leg uit hoe je Liquid hebt gebruikt voor dynamische onderdelen.
+- Voeg eventueel een [permalink naar je HTML/Liquid code](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/views/partials/like-button.liquid) toe.
+
+### CSS
+- Beschrijf hoe je de styling hebt aangepakt.
+- Noem bijvoorbeeld of je nesting, media queries of een aparte class voor de like-knop hebt gebruikt.
+- Voeg eventueel een [permalink naar je CSS regels](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/public/styles/style.css#L45-L60) toe.
+
+### JavaScript
+- Leg uit hoe de like-knop werkt (bijvoorbeeld via een event listener en fetch request).
+- Noem of je gebruik hebt gemaakt van async/await.
+- Voeg een [permalink naar je JS-bestand](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/public/scripts/like-button.js) toe.
 
 ## Installatie
-<!-- Bij Installatie staat hoe een andere developer aan jouw repo kan werken -->
-
-
-## Bronnen
-
-## Licentie
-
-This project is licensed under the terms of the [MIT license](./LICENSE).
+1. Clone de repository:
+   ```bash
+   git clone https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality.git
