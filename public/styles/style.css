@@ -383,6 +383,8 @@ section {
     }
 }
 
+.all-stories-pagina{
+    height: 100vh;
     .all-stories-pagina-nav {
         display: flex;
         justify-content: center;
@@ -400,5 +402,8 @@ section {
         }
 
     }
+
+}
+    
 
 
