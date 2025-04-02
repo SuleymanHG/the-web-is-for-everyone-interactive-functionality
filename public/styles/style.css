@@ -248,7 +248,10 @@ section {
                 align-self: center;
             }
 
-           
+            .liked-svg{
+                fill: red;
+                border: red;
+            }
 
             p{
                 font-size: var(--font-size-playlist-duration);
