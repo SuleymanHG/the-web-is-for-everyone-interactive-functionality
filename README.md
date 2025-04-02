@@ -1,5 +1,10 @@
 # Tumi Mundo - Like Button
 
+![afbeelding](https://github.com/user-attachments/assets/547176c8-d798-49e7-bdd8-fefe012e9ccc)
+![afbeelding](https://github.com/user-attachments/assets/720e5859-ac88-4616-911b-50c492aabe59)
+
+
+
 ## Projectdoel
 In dit project heb ik een interactieve like-button toegevoegd aan de playlists. Deze functie maakt het mogelijk voor gebruikers om playlists te liken.
 
@@ -26,9 +31,11 @@ https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/
 https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/35f54988cd2e6917713a7b39c48a7cc3678d5761/views/partials/likedplaylist.liquid#L1-L33
 
 ### CSS
-- Beschrijf hoe je de styling hebt aangepakt.
-- Noem bijvoorbeeld of je nesting, media queries of een aparte class voor de like-knop hebt gebruikt.
-- Voeg eventueel een [permalink naar je CSS regels](https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/main/public/styles/style.css#L45-L60) toe.
+Ik heb in mijn css gebruik gemaakt van custom proerties om de huisstijl van Tumi Mundo te behouden.
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4bb42a34a2f3d2b7d0de49eb3beaf2d20db11d6a/public/styles/style.css#L3-L99
+
+Verder heb ik gebruik gemaakt van nesting in de css, zodat de code makkelijker lezen en veranderen is.
+https://github.com/SuleymanHG/the-web-is-for-everyone-interactive-functionality/blob/4bb42a34a2f3d2b7d0de49eb3beaf2d20db11d6a/public/styles/style.css#L180-L267
 
 ### JavaScript
 - Leg uit hoe de like-knop werkt (bijvoorbeeld via een event listener en fetch request).
